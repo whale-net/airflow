@@ -1,17 +1,31 @@
-# TODO VANILLA TOML
-# pip install "apache-airflow[celery]==2.8.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.8.txt"
-
-[tool.poetry]
-name = "airflow"
-version = "0.1.0"
-description = ""
-authors = ["qmastermoo <alex.harding@whale-net.net>"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = ">=3.11,<3.12"
-
-
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ['setuptools', 'setuptools_scm[toml]>=6.2']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'whalenet-airflow'
+authors = [{name = 'Alex Harding'}]
+version = "0.1.0"
+dependencies = [
+    'slack_sdk',
+    'twitchAPI'
+]
+
+[tool.setuptools.packages.find]
+where = ['.']
+include = ['dags*']
+exclude = ['tests*']
+namespaces = false  # true by default # not sure what it does though - copied from giford
+
+# [project.optional-dependencies]
+# airflow-dev = [
+#     'airflow=2.8.1',
+# ]
+# lint = [
+#     'ruff',
+#     'isort'
+# ]
+# dev = [
+#     'whalenet-airflow[lint]',
+#     'whalenet-airflow[airflow-dev]'
+# ]

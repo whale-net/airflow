@@ -3,6 +3,7 @@
 
 airflow.cfg
 airflow.db
+airflow-webserver.pid
 standalone_admin_password.txt
 webserver_config.py
 
@@ -11,3 +12,4 @@ logs/*
 __pycache__/
 
 devdata
+*.egg-info/
