@@ -12,15 +12,15 @@ with DAG(dag_id='yar_be_the_dag', start_date=datetime(2024, 1, 27), schedule="* 
     def sample_python_task():
         print('this was printed from a python task')
 
-    @task()
+    @task(multiple_outputs=True)
     def sample_python_task_2():
         print('this was printed from a python task that ran after the test_operator')
 
-    @task()
+    @task(multiple_outputs=True)
     def sample_python_task_3():
         print('this was printed from a python task that ran after the test_operator')
 
-    @task()
+    @task(multiple_outputs=True)
     def sample_python_task_4():
         print('this was printed from a python task that ran after the test_operator')
 
@@ -70,6 +70,8 @@ with DAG(dag_id='yar_be_the_dag', start_date=datetime(2024, 1, 27), schedule="* 
     def sample_python_task_15():
         print('this was printed from a python task that ran after the test_operator and is the last task')
 
+
+    #sample_python_task() >> sample_python_task_2() >> sample_python_task_9() >> [sample_python_task_3(), sample_python_task_4()] >> sample_python_task_8()
 
     intro_chain = sample_python_task() >> sample_python_task_2() >> sample_python_task_9()
 
