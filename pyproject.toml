@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "airflow"
+version = "0.1.0"
+description = ""
+authors = ["qmastermoo <alex.harding@whale-net.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+apache-airflow = "^2.8.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
