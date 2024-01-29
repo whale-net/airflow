@@ -6,8 +6,13 @@ channels_to_check = [
     'summit1g'
 ]
 
-def get_live_channels():
 
-    app_id = Variable.get('twitch_app_id')
-    app_secret = Variable.get('twitch_app_secret')
-    twitch = Twitch(app_id, app_secret)
+
+def get_connection_twitch():
+    return Twitch(Variable.get('TWITCH_API_APP_ID'), Variable.get('TWITCH_API_APP_SECRET'))
+
+
+
+
+def get_live_channels():
+    get_connection_twitch()

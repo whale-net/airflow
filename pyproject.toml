@@ -30,7 +30,8 @@ deploy = [
 #     'ruff',
 #     'isort'
 # ]
-# dev = [
-#     'whalenet-airflow[lint]',
-#     'whalenet-airflow[airflow-dev]'
-# ]
+dev = [
+    'pytest'
+    #'whalenet-airflow[lint]',
+    #'whalenet-airflow[airflow-dev]'
+]
