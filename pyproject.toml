@@ -13,11 +13,16 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ['.']
-include = ['dags*']
+include = ['whalenet_airflow*']
 exclude = ['tests*']
 namespaces = false  # true by default # not sure what it does though - copied from giford
 
-# [project.optional-dependencies]
+[project.optional-dependencies]
+# trying to pin version because i have errors running in deploy
+# https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.11.txt
+deploy = [
+    'redis==4.6.0'
+]
 # airflow-dev = [
 #     'airflow=2.8.1',
 # ]
