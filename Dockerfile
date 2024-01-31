@@ -8,8 +8,8 @@ RUN pip install -e .[deploy]
 
 # using git sync - but still copying over in non-deploy environments for easier debug
 RUN mkdir ${AIRFLOW_HOME}/dag_stage
-COPY --chown=airflow:root ./whalenet_airflow/dags ${AIRFLOW_HOME}/dag_stage/
-RUN if [ "$ENV" != "deploy" ] ; then mv ${AIRFLOW_HOME}/dag_stage/* ${AIRFLOW_HOME}/dags ; fi
+COPY --chown=airflow:root ./whalenet_airflow ${AIRFLOW_HOME}/dag_stage/
+RUN if [ "$ENV" != "deploy" ] ; then mv ${AIRFLOW_HOME}/dag_stage/ ${AIRFLOW_HOME}/dags/whalenet_airflow ; fi
 RUN rm -rf ${AIRFLOW_HOME}/dag_stage
 
 
