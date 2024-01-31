@@ -6,6 +6,8 @@ from airflow.decorators import dag, task
 from airflow.models.taskinstance import TaskInstance
 from airflow.models.dagrun import DagRun
 
+import sys
+sys.path.append('/opt/airflow/dags/repo/whalenet_airflow')
 from whalenet_airflow.lib.twitch import get_connection_twitch, get_live_channels, live_channel_result
 
 
