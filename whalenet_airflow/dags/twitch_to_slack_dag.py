@@ -10,8 +10,7 @@ import sys
 sys.path.append('/opt/airflow/dags/repo')
 from whalenet_airflow.lib.twitch import get_connection_twitch, get_live_channels, live_channel_result
 
-
-LIVE_CHECK_PERIOD = timedelta(minutes=5, hours=3)
+LIVE_CHECK_PERIOD = timedelta(minutes=5, hours=6)
 
 #with DAG(dag_id='twitch_to_slack', start_date=datetime(2024, 1, 29), schedule="*/5 * * * *", catchup=False) as dag:
 
