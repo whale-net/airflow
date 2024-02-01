@@ -16,3 +16,5 @@ devdata
 .ruff-cache
 
 .env
+launch.json
+settings.json
