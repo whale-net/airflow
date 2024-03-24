@@ -36,6 +36,8 @@ def twitch_taskflow():
     def get_live_twitch_channels(channel_names: list[str], task_instance: TaskInstance | None = None, dag_run: DagRun | None = None):
 
         twitch = asyncio.run(get_connection_twitch())
+        
+        print('dag_run.queued_at:', dag_run.queued_at)
 
         # TODO - grab current dag task start time or whatever i can get
         live_channel_results: list[live_channel_results] = asyncio.run(

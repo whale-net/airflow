@@ -5,10 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "pytest",
-            "type": "python",
+            "name": "pytest-manual",
+            "type": "debugpy",
             "request": "launch",
             "module": "pytest",
+            //"args": ["-k","test_slack_dev"],
+            
             "justMyCode": true,
             "envFile": "${workspaceFolder}/.env"
         }
