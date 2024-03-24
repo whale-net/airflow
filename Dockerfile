@@ -1,4 +1,4 @@
-FROM apache/airflow:2.8.1-python3.11
+FROM apache/airflow:2.8.3-python3.11
 
 ARG ENV=dev
 
@@ -12,4 +12,6 @@ COPY --chown=airflow:root ./whalenet_airflow ${AIRFLOW_HOME}/dag_stage/
 RUN if [ "$ENV" != "deploy" ] ; then mv ${AIRFLOW_HOME}/dag_stage/ ${AIRFLOW_HOME}/dags/whalenet_airflow ; fi
 RUN rm -rf ${AIRFLOW_HOME}/dag_stage
 
-
+# make all of our classes serializable
+# not universally true but whatever
+ENV AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES="airflow.* whalenet_airflow.*"

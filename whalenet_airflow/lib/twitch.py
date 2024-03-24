@@ -10,13 +10,13 @@ from twitchAPI.oauth import UserAuthenticator
 from twitchAPI.helper import first
 from twitchAPI.object.api import Stream, TwitchUser
 
-
-# hacky appraoch to local debug only dev
-channels_to_check = [
-    #'shadver',
-    #'summit1g'
-]
-
+@dataclass
+class LiveChannelResult:
+    # using dataclass for xcom/taskflow
+    user_id: str
+    login_name: str
+    display_name: str
+    started_at: datetime
 
 
 async def get_connection_twitch(scopes: list[AuthScope] | None = None) -> Twitch:
@@ -40,22 +40,11 @@ async def get_user_info(twitch_connection: Twitch, login_names: list[str]) -> As
     return users
 
 
-
-@dataclass
-class live_channel_result:
-    # using dataclass for xcom/taskflow
-    user_id: str
-    login_name: str
-    display_name: str
-    started_at: datetime
-
-
-
 async def get_live_channels(twitch_connection: Twitch
-                            , channel_logins: list[str] = channels_to_check
+                            , channel_logins: list[str]
                             , live_as_of: datetime | None = None
-                            , live_grace_period: timedelta = timedelta(minutes=5)
-                            ) -> list[live_channel_result]:
+                            , live_grace_period: timedelta = timedelta(minutes=500000)
+                            ) -> list[LiveChannelResult]:
     """
     _summary_
 
@@ -73,7 +62,7 @@ async def get_live_channels(twitch_connection: Twitch
     users = await get_user_info(twitch_connection, channel_logins)
 
     # user_id, login_name, started_at
-    result_list: list[live_channel_result] = []
+    result_list: list[LiveChannelResult] = []
 
     # TODO - python equivalent of group by
     user_id_user_map: dict[str, TwitchUser] = {}
@@ -95,7 +84,7 @@ async def get_live_channels(twitch_connection: Twitch
             # TODO use logging module
             print(f'{user.login} recently live')
             
-            result = live_channel_result(
+            result = LiveChannelResult(
                 user_id=user.login,
                 login_name=user.login,
                 display_name=user.display_name,

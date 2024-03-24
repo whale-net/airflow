@@ -23,8 +23,15 @@ def test_twitch():
                     'AIRFLOW_VAR_TWITCH_API_APP_ID': os.environ.get('TWITCH_API_APP_ID'),
                     'AIRFLOW_VAR_TWITCH_API_APP_SECRET': os.environ.get('TWITCH_API_APP_SECRET'),
                 }):
-        scopes = []
-        conn = asyncio.run(get_connection_twitch(scopes))
-        results = asyncio.run(get_live_channels(conn))
+        #scopes = []
+        conn = asyncio.run(get_connection_twitch())
+
+        channels = [
+            'shadver',
+            'summit1g',
+            'shenanagans_',
+            'gorgc',
+        ]
+        results = asyncio.run(get_live_channels(conn, channel_logins=channels))
     assert len(results) > 0
 
