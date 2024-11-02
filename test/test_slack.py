@@ -27,5 +27,7 @@ def test_slack_dev():
                 }):
         
         client = get_client()
-        #channels = get_channels(client)
-        send_message(client, channel_id=os.environ.get('TWITCH_ALERT_SLACK_CHANNEL_ID'), message="hello from test (again)")
+        channels = get_channels(client)
+        #send_message(client, channel_id=os.environ.get('TWITCH_ALERT_SLACK_CHANNEL_ID'), message="hello from test (again)")
+
+    return
