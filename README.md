@@ -1,3 +1,11 @@
+# ARCHIVED
+
+Moved from airflow to argo-workflow. Airflow is powerful and useful, but too powerful and useful for my needs. 
+- It consumed a lot of resources in my resource limited environment
+- its operating model required too much learning and understanding to create jobs (my primary use case)
+- I never quite figured out how to safely deploy new code without resorting to hacks. what I had worked, but didn't instill confidence
+
+
 # whalenet_airflow
 holds the dags for whalenet
 
